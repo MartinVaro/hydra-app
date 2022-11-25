@@ -25,9 +25,9 @@
             <div class="container">
                 
             <!-- Navbar Brand-->
-            @if (Route::has('login'))
+            @if (Route::has('login'));
                 @auth
-                <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;">Home</a>
+                <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;"></a>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <a class="navbar-brand ps-3" href="{{ url('/profile') }}" style="color:#51ff00; font-size: 15px;">{{ Auth::user()->name }} {{ Auth::user()->apellido }}</a>
                 <li class="nav-item dropdown">
@@ -35,27 +35,63 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="navbar-brand ps-3" href="{{route('proyecto.index')}}" style="color:#050505; font-size: 15px;"">Mis Proyectos</a></li>
                         <li><a class="navbar-brand ps-3" href="{{route('proyecto.create')}}" style="color:#050505; font-size: 15px;"">Crear Proyecto</a></li>
-                        <li><form method="POST" action="{{route('logout')}}">
+                    @can('dashboard') 
+                        <li><a class="navbar-brand ps-3" href="/admin" style="color:#050505; font-size: 15px;"">Admin/Usuarios</a></li>
+                    @endcan
+                    @can('allproyect')
+                        <li><a class="navbar-brand ps-3" href="" style="color:#050505; font-size: 15px;"">Admin/Proyectos</a></li>
+                    @endcan
+                    <li><form method="POST" action="{{route('logout')}}">
                             @csrf
                             <a class="navbar-brand ps-3" href="{{route('logout')}}" onclick="event.preventDefault();
                             this.closest('form').submit(); " style="color:#050505; font-size: 15px;"">Cerrar sesión</a>
                             </form>  
-                        </li>  
+                    </li>
                     </ul>
                 </li>
             </ul>
+
                 @else
                 <div class="main-menu d-none d-md-block ps-3">
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color:#51ff00; font-size: 15px;">Log in</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registrarse</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color:#51ff00; font-size: 15px;">Registrarse</a>
                     @endif
                 @endauth
-                </div>
-          @endif
-          </div>
+            </div>
+        @endif
         </nav>
-  </body>
+
+        <!-- Header Start -->
+       <div class="header-area">
+            <div class="main-header ">
+                <div class="header-mid d-none d-md-block">
+                   <div class="container">
+                        <div class="row d-flex align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-3 col-lg-3 col-md-3">
+                                <div class="logo">
+                                    <a href="/"><img src="{{asset('assets/img/logo/hydrablack.png')}}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9">
+                                <div class="header-banner f-left ">
+                                    <img src="{{asset('assets/img/hero/header_hydra.png')}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
+
+
+
+
+
+  
 
 
 </header>
@@ -88,7 +124,17 @@
                 <option value="Sociedad" {{isset($proyecto)&& $proyecto->categoria=='Sociedad' ? 'selected': ''}}>Sociedad</option>
             </select>
           </div>
-                
+        
+          <div class="form-group p-4">
+            <img width="300px" src="{{Storage::url($proyecto->portada)}}"><br>
+            <br><label for="imagen" class="input-group-text btn-primary">Imagen</label>
+            <input accept="image/*" type="file" class="form-control" name="imagen">
+            @error('imagen')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+        </div>
+
+
           <div class="form-group p-4">
             <label for="descripcion" class="input-group-text btn-primary  bg-opacity-50">Descripcion</label>
             <textarea class="form-control"  name="descripcion" id="descripcion" cols="30" rows="10">{{isset($proyecto) ? $proyecto->descripcion  : ''}}</textarea><br>
