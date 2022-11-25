@@ -15,9 +15,14 @@ return new class extends Migration
     {
         Schema::create('calificacions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); //nombre de la tabla en singular _id
+            $table->foreignId('proyecto_id')->constrained()->onDelete('cascade');
+            $table->integer("ranking");
+            $table->string("tema");
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

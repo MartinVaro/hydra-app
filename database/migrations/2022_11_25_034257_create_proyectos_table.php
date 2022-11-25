@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); //nombre de la tabla en singular _id
+            $table->String('titulo')->unique();
+            $table->String('categoria');
+            $table->string('portada')->default('default.jpg');
+            //$table->String('carrera');
+            $table->Text('descripcion');
+            $table->Text('abstracto');
+            $table->date("fecha");
             $table->timestamps();
         });
     }

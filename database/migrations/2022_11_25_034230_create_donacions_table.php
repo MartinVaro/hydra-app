@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('donacions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('proyecto_id')->constrained()->onDelete('cascade');
+            $table->String('nombre');
+            $table->float("cantidad")->default('0');
+            $table->date("fecha");
             $table->timestamps();
         });
     }
