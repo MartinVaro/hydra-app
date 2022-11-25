@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Donacion;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,11 @@ class DonacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $date = Carbon::now();
+        $request->merge(['fecha'=> $date->format('Y-m-d')]);
+        Donacion::create($request->all());
+        return back();
     }
 
     /**

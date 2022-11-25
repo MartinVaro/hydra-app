@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+
 use App\Models\Calificacion;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,16 @@ class CalificacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['user_id'=> Auth::id()]);
+
+        if($request->has('ranking')) {
+            Calificacion::create($request->all());
+        }
+        else{
+            $request->merge(['ranking'=> 0]);
+            Calificacion::create($request->all());
+        }
+        return back();
     }
 
     /**
@@ -80,6 +89,7 @@ class CalificacionController extends Controller
      */
     public function destroy(Calificacion $calificacion)
     {
-        //
+        $calificacion->delete();
+        return back();
     }
 }

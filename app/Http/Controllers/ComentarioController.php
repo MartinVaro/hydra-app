@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProyectoController;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,13 @@ class ComentarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
+    
+     public function index()
     {
         //
     }
@@ -24,7 +31,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        //return view('proyectos.form');
     }
 
     /**
@@ -35,7 +42,12 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //dd($request);
+         $request->merge(['user_id'=> Auth::id()]);
+         //dd($request->proyecto_id);
+         Comentario::create($request->all());
+         return back();
+         //return redirect('proyecto/{{$proyecto->id}}')->with('crear','ok');
     }
 
     /**
@@ -80,6 +92,8 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        //dd($comentario);
+        $comentario->delete();
+        return back();
     }
 }
