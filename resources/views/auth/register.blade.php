@@ -9,10 +9,21 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
+            <div class="mt-4">
+                <x-jet-label for="name" value="{{ __('Nombre') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
+            
+            <div class="mt-4">
+                <x-jet-label for="apellido" value="{{ __('Apellido') }}" />
+                <x-jet-input id="apellido" class="block mt-1 w-full" type="text" name="apellido" :value="old('apellido')" required autofocus autocomplete="apellido" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="carrera" value="{{ __('Carrera') }}" />
+                <x-jet-input id="carrera" class="block mt-1 w-full" type="text" name="carrera" :value="old('carrera')" required />
+            </div>
+
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
@@ -33,7 +44,7 @@
                 <div class="mt-4">
                     <x-jet-label for="terms">
                         <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms" required />
+                            <x-jet-checkbox name="terms" id="terms"/>
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
@@ -48,11 +59,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('¿Ya estás registrado?') }}
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-jet-button>
             </div>
         </form>
