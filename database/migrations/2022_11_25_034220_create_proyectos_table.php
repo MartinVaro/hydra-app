@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); //nombre de la tabla en singular _id
             $table->String('titulo')->unique();
             $table->String('categoria');
-            $table->string('portada')->default('default.jpg');
+            $table->string('portada')->default('/uploads/default.png');
             //$table->String('carrera');
             $table->Text('descripcion');
             $table->Text('abstracto');

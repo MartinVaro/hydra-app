@@ -27,7 +27,7 @@
             <!-- Navbar Brand-->
             @if (Route::has('login'));
                 @auth
-                <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;"></a>
+                <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;">Home</a>
                 <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <a class="navbar-brand ps-3" href="{{ url('/profile') }}" style="color:#51ff00; font-size: 15px;">{{ Auth::user()->name }} {{ Auth::user()->apellido }}</a>
                 <li class="nav-item dropdown">
@@ -126,7 +126,7 @@
           </div>
         
           <div class="form-group p-4">
-            <img width="300px" src="{{Storage::url($proyecto->portada)}}"><br>
+            <img width="300px" src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt=""><br>
             <br><label for="imagen" class="input-group-text btn-primary">Imagen</label>
             <input accept="image/*" type="file" class="form-control" name="imagen">
             @error('imagen')

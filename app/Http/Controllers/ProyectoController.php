@@ -300,6 +300,8 @@ class ProyectoController extends Controller
      */
     public function update(Request $request, Proyecto $proyecto)
     {
+        $original = "/uploads/default.png";
+
         $request->validate([
             'titulo'=> 'required',
             'categoria'=> 'required',
@@ -310,10 +312,16 @@ class ProyectoController extends Controller
         ]);
 
         if($request->hasFile('imagen')){
-            $direccion=$request->file('imagen')->store('public');
-            $request->merge(['portada'=> $direccion]);
-            $url = str_replace('storage', 'public', $proyecto->portada);
-            Storage::delete($url);
+
+            $url= Storage::disk('digitalocean')->putFile('uploads', request()->imagen, 'public');
+            $request->merge(['portada'=> $url]);
+
+            //$direccion=$request->file('imagen')->store('public');
+            //$request->merge(['portada'=> $direccion]);
+            if($request->portada != $original){
+                Storage::disk('digitalocean')->delete('uploads', $proyecto->portada);
+            }
+
         }
         else{
             $request->merge(['portada'=> $proyecto->portada]);
@@ -332,8 +340,7 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        $url = str_replace('storage', 'public', $proyecto->portada);
-        Storage::delete($url);
+        Storage::disk('digitalocean')->delete('uploads', $proyecto->portada);
         $proyecto->delete();
         return back()->with('eliminar','ok');
         //return redirect('/proyecto')->with('eliminar','ok');

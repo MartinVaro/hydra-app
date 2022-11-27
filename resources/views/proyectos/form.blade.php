@@ -27,49 +27,56 @@
 
    <body>
        
-    <header>
+   <header>
 
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <div class="container">     
-            <!-- Navbar Brand-->
-            @if (Route::has('login'));
-                @auth
-                <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;"></a>
-                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <a class="navbar-brand ps-3" href="{{ url('/profile') }}" style="color:#51ff00; font-size: 15px;">{{ Auth::user()->name }} {{ Auth::user()->apellido }}</a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="navbar-brand ps-3" href="{{route('proyecto.index')}}" style="color:#050505; font-size: 15px;"">Mis Proyectos</a></li>
-                        <li><a class="navbar-brand ps-3" href="{{route('proyecto.create')}}" style="color:#050505; font-size: 15px;"">Crear Proyecto</a></li>
-                    @can('dashboard') 
-                        <li><a class="navbar-brand ps-3" href="admin" style="color:#050505; font-size: 15px;"">Admin/Usuarios</a></li>
-                    @endcan
-                    @can('allproyect')
-                        <li><a class="navbar-brand ps-3" href="admin/proyectos" style="color:#050505; font-size: 15px;"">Admin/Proyectos</a></li>
-                    @endcan
-                    <li><form method="POST" action="{{route('logout')}}">
-                            @csrf
-                            <a class="navbar-brand ps-3" href="{{route('logout')}}" onclick="event.preventDefault();
-                            this.closest('form').submit(); " style="color:#050505; font-size: 15px;"">Cerrar sesión</a>
-                            </form>  
-                    </li>
-                    </ul>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <div class="container">     
+        <!-- Navbar Brand-->
+        @if (Route::has('login'))
+            @auth
+            <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;">Home</a>
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <a class="navbar-brand ps-3" href="{{ url('/profile') }}" style="color:#51ff00; font-size: 15px;">{{ Auth::user()->name }} {{ Auth::user()->apellido }}</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="navbar-brand ps-3" href="{{route('proyecto.index')}}" style="color:#050505; font-size: 15px;"">Mis Proyectos</a></li>
+                    <li><a class="navbar-brand ps-3" href="{{route('proyecto.create')}}" style="color:#050505; font-size: 15px;"">Crear Proyecto</a></li>
+                @can('dashboard') 
+                    <li><a class="navbar-brand ps-3" href="/admin" style="color:#050505; font-size: 15px;"">Admin/Usuarios</a></li>
+                @endcan
+                @can('allproyect')
+                    <li><a class="navbar-brand ps-3" href="/admin/proyectos" style="color:#050505; font-size: 15px;"">Admin/Proyectos</a></li>
+                @endcan
+                <li><form method="POST" action="{{route('logout')}}">
+                        @csrf
+                        <a class="navbar-brand ps-3" href="{{route('logout')}}" onclick="event.preventDefault();
+                        this.closest('form').submit(); " style="color:#050505; font-size: 15px;"">Cerrar sesión</a>
+                        </form>  
                 </li>
-            </ul>
+                </ul>
+            </li>
+        </ul>
 
+        @else
 
-                @else
-                <div class="main-menu d-none d-md-block ps-3">
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" style="color:#51ff00; font-size: 15px;">Log in</a>
+        <a class="navbar-brand ps-3" href="/" style="color:#51ff00; font-size: 15px;">Home</a>
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="navbar-brand ps-3" href="{{ route('login') }}" style="color:#050505; font-size: 15px;">Log in</a></li>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline" style="color:#51ff00; font-size: 15px;">Registrarse</a>
+                    <li><a class="navbar-brand ps-3" href="{{ route('register') }}" style="color:#050505; font-size: 15px;">Registrarse</a>
                     @endif
-                @endauth
-            </div>
-        @endif
-        </nav>
+                </ul>
+            </li>
+        </ul>
+            @endauth
+        </div>
+    @endif
+    </nav>
 
         <!-- Header Start -->
        <div class="header-area">
