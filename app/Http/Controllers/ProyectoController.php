@@ -247,6 +247,7 @@ class ProyectoController extends Controller
         ]);
 
         if($request->hasFile('imagen')){
+            Storage::disk('digitalocean')->putFile('uploads', request()->imagen, 'public');
             $direccion=$request->file('imagen')->store('public');
             $request->merge(['portada'=> $direccion]);
         }
