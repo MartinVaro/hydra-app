@@ -121,9 +121,7 @@
                             
                             <div class="about-right mb-20">
                                 <div class="about-img">
-                                    <p>{{$proyecto->portada}}</p>
-                                    <img src="{{Storage::disk('s3')->url($proyecto->portada)}}">
-                                    <img src="{{Storage::url($proyecto->portada)}}" alt="">
+                                    <img src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
                                 </div>
 
 
