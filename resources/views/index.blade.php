@@ -239,7 +239,7 @@
                         @if ($a>=4 && $a<=6)                
                         <div class="trand-right-single d-flex">
                                 <div class="trand-right-img  mb-30"">
-                                    <img src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
+                                    <img img width="275px" src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
                                 </div>
                                 <div class="trand-right-cap">
                                     <span class="color3"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
