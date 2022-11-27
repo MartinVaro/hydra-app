@@ -340,7 +340,10 @@ class ProyectoController extends Controller
      */
     public function destroy(Proyecto $proyecto)
     {
-        Storage::disk('digitalocean')->delete('uploads', $proyecto->portada);
+        $original = "/uploads/default.png";
+        if($proyecto->portada != $original){
+            Storage::disk('digitalocean')->delete('uploads', $proyecto->portada);
+        }
         $proyecto->delete();
         return back()->with('eliminar','ok');
         //return redirect('/proyecto')->with('eliminar','ok');
