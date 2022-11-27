@@ -235,7 +235,7 @@ class ProyectoController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->imagen);
+        //dd($request->imagen);
         $request->validate([
             'titulo'=> 'required',
             'categoria'=> 'required',
@@ -247,6 +247,7 @@ class ProyectoController extends Controller
 
         if($request->hasFile('imagen')){
             $url= Storage::disk('digitalocean')->putFile('uploads', request()->imagen, 'public');
+            dd($url);
             //$direccion=$request->file('imagen')->store('public');
             $request->merge(['portada'=> $url]);
         }
