@@ -157,7 +157,7 @@
           </div>
 
           <div class="form-group p-4">
-            <label for="abstracto" class="input-group-text btn-primary  bg-opacity-50">Abstracto</label>
+            <label for="abstracto" class="input-group-text btn-primary  bg-opacity-50">Abstracto (5 palabras máximo)</label>
             <textarea class="form-control" name="abstracto" id="abstracto" cols="30" rows="10">{{old('Abstracto')}}</textarea>
             @error('abstracto')
                 <div class="alert alert-danger">{{$message}}</div>

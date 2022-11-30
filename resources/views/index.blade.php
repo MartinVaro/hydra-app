@@ -242,7 +242,7 @@
                                     <img img width="275px" src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
                                 </div>
                                 <div class="trand-right-cap">
-                                    <span class="color3"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
+                                    <span class="color1"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
                                     <p>{{$proyecto->abstracto}}</p>
                                 </div>
                         </div>
@@ -349,7 +349,7 @@
                                     <img width="275px" src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
                                 </div>
                                 <div class="trand-right-cap">
-                                    <span class="color3"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
+                                    <span class="color1"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
                                     <p>{{$proyecto->abstracto}}</p>
                                 </div>
                         </div>
@@ -391,11 +391,11 @@
                             @if ($a>=0 && $a<=5) 
                             <div class="weekly-single">
                                 <div class="weekly-img">
-                                    <img src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
+                                    <img width="275px" src="{{Storage::disk('digitalocean')->url($proyecto->portada)}}" alt="">
                                 </div>
                                 <div class="weekly-caption"> 
                                     
-                                    <span class="color3"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
+                                    <span class="color2"><a style="color:#000000;" href="proyecto/{{$proyecto->id}}" >{{$proyecto->titulo}}</a></span>
                                     <p>{{$proyecto->abstracto}}</p>
                                 </div>
                             </div>
